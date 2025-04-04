@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 from snowflake.snowpark.functions import col
 
 st.title(":cup_with_straw: Customise Your Smoothie :cup_with_straw:")
@@ -27,3 +28,6 @@ if ingrediants_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered, ' + name_on_order + '!', icon="✅")
+
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
